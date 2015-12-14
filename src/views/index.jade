@@ -1,0 +1,28 @@
+extends ./layouts/layout
+
+mixin card
+  .col-md-3.text-center
+    button Thanks
+
+block page-title
+  title Wiki Thanks
+
+block head
+  .page-header  
+    h1 Wiki Thanks 
+      small 
+        span.glyphicon.glyphicon-heart(aria-hidden="true")
+        span spread the
+        mark love 
+        span around
+
+block content
+  .container
+    .row
+      +card
+      +card
+      +card
+      +card
+  script(src='js/jquery.min.js')
+  script(src='js/bootstrap.min.js')
+  script(src='js/app.js')  

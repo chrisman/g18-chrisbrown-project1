@@ -30,6 +30,16 @@ __references and resources__
 
 * [MediaWiki API help](https://en.wikipedia.org/w/api.php)
 
+## What I Have Learned
+
+* Bower. bower downloads front end assets and resolves dependencies. It doesn't do anything with them though. Including them in your project is up to you.
+
+  * ?? why would you use bower if a CDN is available for the assest?
+
+  * todo: build gulp tasks to automate incorporating bower modules.
+
+* Bootstrap. neat layout tool.
+
 ## Project Owners
 
 * April is my project owner
