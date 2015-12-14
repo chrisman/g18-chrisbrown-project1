@@ -40,17 +40,12 @@ gulp.task('styles', function(){
 
 // http://fettblog.eu/gulp-browserify-multiple-bundles/
 gulp.task('js', function() {
-  var files = [
-    'src/js/app.js',
-  ]
 
-  var tasks = files.map(function(entry){
-    return browserify({ entries: [entry]})
-      .bundle()
-      .pipe(source(entry.split('/')[2]))
-      .pipe(gulp.dest('public/js'))
-  })
-  return es.merge.apply(null, tasks)
+  return browserify('src/js/app.js')
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(gulp.dest('public/js'))
+
 });
 
 gulp.task('clean', function(){

@@ -7673,6 +7673,11 @@ button.close {
   }
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
   padding-bottom: 50px;
 }
@@ -7680,6 +7685,7 @@ body {
 footer {
   position: fixed;
   background-color: #aaa;
+  color: #ccc;
   width: 100%;
   height: 50px;
   bottom: 0px;

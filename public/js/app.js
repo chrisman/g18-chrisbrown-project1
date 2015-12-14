@@ -1,8 +1,56 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var xmlgetter = require('./xmlgetter')
 
 $(document).ready(function(){
-  // console.log("hello werld");
-  $('.card').button('toggle').addClass('fat')
+  console.log('hello werld');
+
+  var apiurl = xmlgetter.getEncodedUrl("https://en.wikipedia.org/w/api.php?action=feedrecentchanges");
+
+  function logFeed(d){
+    alert('innit')
+    if (d.status == "ok"){
+      console.log(d.items);
+    }
+  }
+
+  var srcurl = "http://rss2json.com/api.json?callback="+"logFeed"+"&rss_url="+apiurl
+
+  $('body').append("<script type='application/json' src="+srcurl+"></script>")
 })
+
+},{"./xmlgetter":2}],2:[function(require,module,exports){
+module.exports = {
+  serveLocal: function(){
+    // var localcopy = require('./sampledata.xml')
+    var localcopy = "<rss version='2.0'><channel><title>RSS Title</title></channel></rss>"
+    return localcopy
+  },
+  getxml: function(){
+    return (function(){
+      return "<rss version='2.0'><channel><title>RSS Title</title></channel></rss>"
+    })()
+  },
+  fetchLive: function(){
+    return (function(){
+
+      $.get("https://en.wikipedia.org/w/api.php?action=feedrecentchanges",function(d){
+        console.log(d);
+      }).done(function(d){
+        console.log(d);
+      }).fail(function(e){
+        console.error(e);
+      })
+
+    })()
+  },
+  getJsonp: function(){
+    return (function(d){
+      console.log(d);
+    })()
+  },
+  getEncodedUrl: function(u){
+    return encodeURIComponent(u)
+  }
+}
 
 },{}]},{},[1]);

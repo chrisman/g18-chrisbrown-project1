@@ -40,6 +40,8 @@ __references and resources__
 
 * Bootstrap. neat layout tool.
 
+* CORS, xhr, etc. My xml feed API does not have a _Access-Control-Allow-Origin_ header, which apparently means that it can the request will be denied. "No 'Access-Control-Allow-Origin' header is present on the requested resource."
+
 ## Project Owners
 
 * April is my project owner
