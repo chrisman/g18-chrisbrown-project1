@@ -1,8 +1,16 @@
 extends ./layouts/layout
 
-mixin card
-  .col-md-3.text-center
-    button Thanks
+mixin card(id)
+  .col-md-3.text-center.card
+    button.btn.btn-lg(id= id, data-toggle="modal", data-target="#m"+id) 
+      span Thanks
+
+mixin poster(id)
+  .modal.fade(id= "m"+id, tabindex="-1", role="dialog")
+    .modal-dialog
+      .modal-content
+        .modal-body
+          h4 test
 
 block page-title
   title Wiki Thanks
@@ -11,18 +19,22 @@ block head
   .page-header  
     h1 Wiki Thanks 
       small 
-        span.glyphicon.glyphicon-heart(aria-hidden="true")
         span spread the
-        mark love 
+        span.glyphicon.glyphicon-heart(aria-hidden="true")
         span around
 
 block content
+  +poster('001')
+  +poster('002')
+  +poster('003')
+  +poster('004')
+          
   .container
     .row
-      +card
-      +card
-      +card
-      +card
+      +card('001')
+      +card('002')
+      +card('003')
+      +card('004')
   script(src='js/jquery.min.js')
   script(src='js/bootstrap.min.js')
   script(src='js/app.js')  
