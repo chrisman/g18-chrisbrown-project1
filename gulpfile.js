@@ -44,8 +44,8 @@ gulp.task('styles', function(){
     .pipe(postcss([autoprefixer({
       browsers: ['last 2 versions']
     })]))
-    .pipe(gulp.dest('public/css'))
     .pipe(cssmin())
+    .pipe(gulp.dest('public/css'))
 })
 
 // http://fettblog.eu/gulp-browserify-multiple-bundles/
