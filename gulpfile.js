@@ -5,11 +5,13 @@ var source = require('vinyl-source-stream')
 var streamify = require('gulp-streamify')
 var uglify = require('gulp-uglify')
 var es = require('event-stream')
+var filter = require('gulp-filter')
+var mainBowerFiles = require('main-bower-files')
+var rename = require('gulp-rename')
 
 var sass = require('gulp-sass')
 var postcss = require('gulp-postcss')
 var autoprefixer = require('autoprefixer')
-var normalize = require('node-normalize-scss')
 var cssmin = require('gulp-minify-css')
 
 var jade = require('gulp-jade')
@@ -23,10 +25,18 @@ gulp.task('html', function(){
     .pipe(gulp.dest('public'))
 });
 
+gulp.task('fonts', function(){
+  return gulp.src('./bower_components/font-awesome/fonts/**.*')
+    .pipe(gulp.dest('./public/fonts'))
+})
+
 var sassOptions = {
   errLogToConsole: true,
   outputStyle: 'expanded',
-  includePaths: normalize.includePaths
+  loadPath: [
+    './bower_components/fontawesome/scss',
+    './bower_components/bootstrap-sass/assets/stylesheets'
+  ]
 }
 gulp.task('styles', function(){
   return gulp.src('src/scss/app.scss')
@@ -44,6 +54,8 @@ gulp.task('js', function() {
   return browserify('src/js/app.js')
     .bundle()
     .pipe(source('app.js'))
+    .pipe(streamify(uglify()))
+    .pipe(rename({suffix: '.bundle'}))
     .pipe(gulp.dest('public/js'))
 
 });

@@ -5,7 +5,7 @@
     "Christopher Brown <christopher.p.brown@gmail.com>"
   ],
   "description": "",
-  "main": "",
+  "main": "jquery",
   "moduleType": [
     "node"
   ],
@@ -19,7 +19,8 @@
   ],
   "dependencies": {
     "bootstrap-sass": "~3.3.6",
-    "jquery": "~2.1.4"
+    "jquery": "~2.1.4",
+    "font-awesome": "fontawesome#~4.5.0"
   },
   "devDependencies": {
     "bootstrap-sass": "~3.3.6"
