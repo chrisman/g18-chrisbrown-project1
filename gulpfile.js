@@ -18,6 +18,7 @@ var jade = require('gulp-jade')
 var image = require('gulp-image')
 var livereload = require('gulp-livereload')
 var del = require('del')
+var deploy = require('gulp-gh-pages')
 
 gulp.task('html', function(){
   return gulp.src('src/views/*jade')
@@ -68,6 +69,11 @@ gulp.task('images', function(){
   return gulp.src('src/assets/img/*')
     .pipe(image())
     .pipe(gulp.dest('public/img'))
+})
+
+gulp.task('deploy', function(){
+  return gulp.src('dist/**/*')
+    .pipe(deploy())
 })
 
 gulp.task('watchman', function(){
