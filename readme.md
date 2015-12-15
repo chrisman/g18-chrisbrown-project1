@@ -34,6 +34,8 @@ __references and resources__
 
 * [RSS2JSON](http://rss2json.com/)
 
+* [programmableweb](http://www.programmableweb.com/api/wikipedia)
+
 ## What I Have Learned
 
 * Bower. bower downloads front end assets and resolves dependencies. It doesn't do anything with them though. Including them in your project is up to you.
