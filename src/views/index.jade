@@ -1,26 +1,5 @@
 extends ./layouts/layout
 
-mixin card(id)
-  .col-md-3.text-center.card
-    button.btn.btn-lg(id="button"+id, 
-      data-toggle="modal", 
-      data-target="#flier"+id) 
-      span Thanks
-
-mixin flier(id)
-  .modal.fade(id= "flier"+id, tabindex="-1", role="dialog")
-    .modal-dialog
-      .modal-content
-        .modal-header
-          h4 this is a title
-        .modal-body
-          p whoa nelly
-        .modal-footer
-          button.btn.btn-default(type="button",data-dismiss="modal") Close
-          button.btn.btn-default(type="button")
-            span.glyphicon.glyphicon-heart(aria-hidden="true")
-            span Thank
-
 block page-title
   title Wiki Thanks
   link(rel="icon",
@@ -36,17 +15,7 @@ block head
         span around
 
 block content
-  +flier('001')
-  +flier('002')
-  +flier('003')
-  +flier('004')
-          
   #main.container
-    .row
-      +card('001')(title="title1", body="Lorem ipsum dolor sit amet")
-      +card('002')
-      +card('003')
-      +card('004')
       
   block scriptblock
     script(src='js/jquery.min.js')
