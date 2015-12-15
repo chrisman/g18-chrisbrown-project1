@@ -1,27 +1,17 @@
+function getQueryString(i){
+  return i.split('?')[1]
+}
+function getQueryObjectFromString(queryString){
+  return (queryString.split('&amp;').reduce(function(acc, val){
+    var key = val.split('=')[0]
+    var value = val.split('=')[1].split('+').join(' ')
+
+    acc[key] = value
+    return acc
+  },{}))
+}
+
 module.exports = {
-  serveLocal: function(){
-    // var localcopy = require('./sampledata.xml')
-    var localcopy = "<rss version='2.0'><channel><title>RSS Title</title></channel></rss>"
-    return localcopy
-  },
-  getxml: function(){
-    return (function(){
-      return "<rss version='2.0'><channel><title>RSS Title</title></channel></rss>"
-    })()
-  },
-  fetchLive: function(){
-    return (function(){
-
-      $.get("https://en.wikipedia.org/w/api.php?action=feedrecentchanges",function(d){
-        console.log(d);
-      }).done(function(d){
-        console.log(d);
-      }).fail(function(e){
-        console.error(e);
-      })
-
-    })()
-  },
   fetchJson: function(url){
     return (function(url){
 
@@ -31,12 +21,11 @@ module.exports = {
 
     })()
   },
-  getJsonp: function(){
-    return (function(d){
-      console.log(d);
-    })()
-  },
   getEncodedUrl: function(u){
     return encodeURIComponent(u)
+  },
+  queryParser: function(input) {
+    return getQueryObjectFromString(getQueryString(input))
   }
+
 }

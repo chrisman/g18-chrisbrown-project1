@@ -49,17 +49,14 @@ gulp.task('styles', function(){
     .pipe(gulp.dest('public/css'))
 })
 
-// http://fettblog.eu/gulp-browserify-multiple-bundles/
 gulp.task('js', function() {
-
   return browserify('src/js/app.js')
     .bundle()
     .pipe(source('app.js'))
     .pipe(streamify(uglify()))
     .pipe(rename({suffix: '.bundle'}))
     .pipe(gulp.dest('public/js'))
-
-});
+})
 
 gulp.task('clean', function(){
   return del(['public/css', 'public/js'])

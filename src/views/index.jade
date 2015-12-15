@@ -23,6 +23,9 @@ mixin flier(id)
 
 block page-title
   title Wiki Thanks
+  link(rel="icon",
+    href="favicon.ico",
+    type="image/x-icon")
 
 block head
   .page-header  
@@ -38,7 +41,7 @@ block content
   +flier('003')
   +flier('004')
           
-  .container
+  .container#main
     .row
       +card('001')(title="title1", body="Lorem ipsum dolor sit amet")
       +card('002')
