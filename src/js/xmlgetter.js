@@ -22,6 +22,15 @@ module.exports = {
 
     })()
   },
+  fetchJson: function(url){
+    return (function(url){
+
+      $.get(url, function(d){
+        console.log(d);
+      })
+
+    })()
+  },
   getJsonp: function(){
     return (function(d){
       console.log(d);
