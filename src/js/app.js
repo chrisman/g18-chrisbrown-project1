@@ -4,7 +4,7 @@ var xmlgetter = require('./xmlgetter')
 function makeCard(o) {
   var idBase = xmlgetter.queryParser(o["link"])["oldid"]
     // console.log(idBase); // should be the ID for the block
-  return '<div class="row"><div class="col-md-12"><h3><a href="' + o["link"] + '">' + o["title"] + '</a><small> by ' + o["author"] + '</small></h2></div></div><div class="row"><div class="col-md-12">' + o["description"] + '</div></div><div class="row"><div class="col-md-12"><button class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span>&nbsp;Thank</span></button></div></div>'
+  return '<div id="row-'+ idBase +'" class="row"><div class="col-md-12"><h3><a href="' + o["link"] + '">' + o["title"] + '</a><small> by ' + o["author"] + '</small></h2></div></div><div class="row"><div class="col-md-12">' + o["description"] + '</div></div><div class="row"><div class="col-md-12"><button class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span>&nbsp;Thank</span></button></div></div>'
 }
 
 // Filters and forEach. see `$get(rss2json+encodedUrlForApiCall, `
