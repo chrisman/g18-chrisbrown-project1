@@ -1,22 +1,25 @@
 var xmlgetter = require('./xmlgetter')
 
 // append to page
-function makeCard(o){
+function makeCard(o) {
   var idBase = xmlgetter.queryParser(o["link"])["oldid"]
-  // console.log(idBase); // should be the ID for the block
-  return '<div class="row"><div class="col-md-12"><h3><a href="'+o["link"]+'">'+o["title"]+'</a><small> by '+o["author"]+'</small></h2></div></div><div class="row"><div class="col-md-12">'+o["description"]+'</div></div><div class="row"><div class="col-md-12"><button class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span>&nbsp;Thank</span></button></div></div>'
+    // console.log(idBase); // should be the ID for the block
+  return '<div class="row"><div class="col-md-12"><h3><a href="' + o["link"] + '">' + o["title"] + '</a><small> by ' + o["author"] + '</small></h2></div></div><div class="row"><div class="col-md-12">' + o["description"] + '</div></div><div class="row"><div class="col-md-12"><button class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span>&nbsp;Thank</span></button></div></div>'
 }
 
 // Filters and forEach. see `$get(rss2json+encodedUrlForApiCall, `
-function excludeUserPages(o){
+function excludeUserPages(o) {
   return (!(o["title"].includes('User')))
 }
-function excludeAnonymousUsers(o){
+
+function excludeAnonymousUsers(o) {
   return (!(o["author"].match(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/)))
 }
-function addToPage(o){
+
+function addToPage(o) {
   $('#main').append(makeCard(o))
 }
+
 function handleGetMyApiCall(data) {
   data["items"]
     .filter(excludeUserPages)
@@ -25,7 +28,7 @@ function handleGetMyApiCall(data) {
 }
 
 
-$(document).ready(function(){
+$(document).ready(function() {
 
   var myApiEndPoint = "https://en.wikipedia.org/w/api.php"
   var getRecentChanges = "https://en.wikipedia.org/w/api.php?action=feedrecentchanges&hideminor=true&hidebots=true"
@@ -44,19 +47,18 @@ $(document).ready(function(){
     format: 'json',
     rev: '624145252',
     source: 'diff',
-    token: '+\\'
+    token: ''
   }
 
-  $.get(rss2json+encodedUrlForApiCall, handleGetMyApiCall)
+  $.get(rss2json + encodedUrlForApiCall, handleGetMyApiCall)
 
-  $(document).on('click', 'button', function(e){
+  $(document).on('click', 'button', function(e) {
     console.log('click logged');
     $.get(corsAnywhere+myGetTokensString, function(res){
-      myPostStringOptions["token"] = "8e4e76141b9b6c520fb42079dfd4f7dd5671b256+\\"
+      myPostStringOptions["token"] = res["query"]["tokens"]["csrftoken"]
       $.post(corsAnywhere+myApiEndPoint, myPostStringOptions, function(res){
         console.log(res);
       })
     })
   })
-
 })

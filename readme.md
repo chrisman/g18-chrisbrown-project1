@@ -44,7 +44,9 @@ __Stretch__
 
 * the __Wikipedia API.__ the POST request I chose to use requires authentication via a 'token' string, which I _cannot_ get to work.
 
-  1. __Latest:__ gotten over all the CORS issues. But remote token fetching still returns an anonymous token, which you cannot use to post data.
+  1. __Latest:__ sending an md5 hash of a token returns a badtoken error.
+
+  1. gotten over all the CORS issues. But remote token fetching still returns an anonymous token, which you cannot use to post data.
 
   2. The token must be included in the POST body.
 
