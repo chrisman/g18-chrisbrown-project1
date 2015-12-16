@@ -38,6 +38,7 @@ $(document).ready(function() {
     hidebots: 'true'
   }
   var myGetTokensString = "https://en.wikipedia.org/w/api.php?action=query&meta=tokens&type=csrf&format=json"
+  var testCentralAuthString = "https://en.wikipedia.org/w/api.php?action=centralauthtoken&format=json"
   var encodedUrlForApiCall = xmlgetter.getEncodedUrl(getRecentChanges);
   var corsAnywhere = "https://cors-anywhere.herokuapp.com/"
   var rss2json = "http://rss2json.com/api.json?&rss_url="
