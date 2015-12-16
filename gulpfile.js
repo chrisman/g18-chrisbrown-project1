@@ -19,6 +19,7 @@ var image = require('gulp-image')
 var livereload = require('gulp-livereload')
 var del = require('del')
 var deploy = require('gulp-gh-pages')
+var browserSync = require('browser-sync').create()
 
 gulp.task('html', function(){
   return gulp.src('src/views/*jade')
@@ -47,6 +48,7 @@ gulp.task('styles', function(){
     })]))
     .pipe(cssmin())
     .pipe(gulp.dest('public/css'))
+    .pipe(browserSync.stream())
 })
 
 gulp.task('js', function() {
@@ -74,6 +76,12 @@ gulp.task('deploy', function(){
 })
 
 gulp.task('watchman', function(){
+  browserSync.init({
+    server: './public/',
+    open: true
+  }, function callback(){
+    gulp.watch('public/index.html', browserSync.reload)
+  })
   gulp.watch('src/js/**/*js', ['js'])
   gulp.watch('src/scss/**/*scss', ['styles'])
   gulp.watch('src/views/**/*jade', ['html'])
