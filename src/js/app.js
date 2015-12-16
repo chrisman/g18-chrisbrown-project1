@@ -1,5 +1,4 @@
 var xmlgetter = require('./xmlgetter')
-require('./md5')
 
 // append to page
 function makeCard(o){
@@ -27,32 +26,34 @@ function handleGetMyApiCall(data) {
 
 
 $(document).ready(function(){
-  console.log('hello werld');
+
   var myApiEndPoint = "https://en.wikipedia.org/w/api.php"
-  var myGetString = "https://en.wikipedia.org/w/api.php?action=feedrecentchanges&hideminor=true&hidebots=true"
-  var encodedUrlForApiCall = xmlgetter.getEncodedUrl(myGetString);
+  var getRecentChanges = "https://en.wikipedia.org/w/api.php?action=feedrecentchanges&hideminor=true&hidebots=true"
+  var getRecentChangesOptions = {
+    action: 'feedrecentchanges',
+    hideminor: 'true',
+    hidebots: 'true'
+  }
+  var myGetTokensString = "https://en.wikipedia.org/w/api.php?action=query&meta=tokens&type=csrf&format=json"
+  var encodedUrlForApiCall = xmlgetter.getEncodedUrl(getRecentChanges);
   var corsAnywhere = "https://cors-anywhere.herokuapp.com/"
   var rss2json = "http://rss2json.com/api.json?&rss_url="
   var myPostString = "https://en.wikipedia.org/w/api.php?action=thank&format=json&rev=624145252&source=history"
+  var myPostStringOptions = {
+    action: 'thank',
+    format: 'json',
+    rev: '624145252',
+    source: 'diff',
+    token: '+\\'
+  }
 
   $.get(rss2json+encodedUrlForApiCall, handleGetMyApiCall)
 
   $(document).on('click', 'button', function(e){
     console.log('click logged');
-    $.get(corsAnywhere+myApiEndPoint, {
-      action: 'query',
-      meta: 'tokens',
-      format: 'json'
-    }, function(res){
-      console.log(res['query']['tokens']['csrftoken']);
-      console.log(MD5(res['query']['tokens']['csrftoken']));
-      $.post(corsAnywhere+myApiEndPoint, {
-        action: 'thank',
-        format: 'json',
-        rev: '624145252',
-        source: 'diff',
-        token: res["query"]["tokens"]["csrftoken"]
-      }, function(res){
+    $.get(corsAnywhere+myGetTokensString, function(res){
+      myPostStringOptions["token"] = "8e4e76141b9b6c520fb42079dfd4f7dd5671b256+\\"
+      $.post(corsAnywhere+myApiEndPoint, myPostStringOptions, function(res){
         console.log(res);
       })
     })
