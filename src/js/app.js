@@ -13,9 +13,7 @@ function makeCard(o) {
     <div class="row">\
       <h3><a href="' + o["link"] + '">' + o["title"] + '</a><small> by ' + o["author"] + '</small></h3>\
     </div>\
-    <div class="row row-desc">\
-      <div class="col-md-4">' + desc + '</div>\
-    </div>\
+    <div class="row row-desc">' + desc + '</div>\
     <div class="row">\
       <button id="btn-'+ idBase +'" class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span>&nbsp;Thank</span></button>\
     </div>\
