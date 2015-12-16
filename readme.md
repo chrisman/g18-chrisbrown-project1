@@ -30,7 +30,9 @@ __references and resources__
 
 * [MediaWiki API help](https://en.wikipedia.org/w/api.php)
 
-* [MediaWiki API Sandbod](https://en.wikipedia.org/wiki/Special:ApiSandbox#action=query&meta=tokens&format=json)
+* [MediaWiki API Sandbox](https://en.wikipedia.org/wiki/Special:ApiSandbox#action=query&meta=tokens&format=json)
+
+* [MediaWiki CORS Manual](https://www.mediawiki.org/wiki/Manual:CORS)
 
 * [RSS2JSON](http://rss2json.com/)
 
@@ -65,6 +67,8 @@ __references and resources__
   1. Using an anonymous token (`+\`) returns a "not logged in" error code, which is the only thing I can get it to do besides "badtoken"
 
   2. You get different token values everytime you call `api.php?action=query&meta=tokens`, none of which work. (The request answers with 'badtoken' if you post with a csrf, patrol, rollback, userrights, or watch token.)
+
+  3. You're supposed to be able to get an _Access-Control-Allow-Origin_ header if you set the right origin in the data object of your GET request, but it keeps returning 'null'.
 
 ## Project Owners
 
