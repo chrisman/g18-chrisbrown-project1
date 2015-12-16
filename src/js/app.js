@@ -1,4 +1,5 @@
 var xmlgetter = require('./xmlgetter')
+require('./md5')
 
 // append to page
 function makeCard(o){
@@ -37,12 +38,14 @@ $(document).ready(function(){
   $.get(rss2json+encodedUrlForApiCall, handleGetMyApiCall)
 
   $(document).on('click', 'button', function(e){
+    console.log('click logged');
     $.get(corsAnywhere+myApiEndPoint, {
       action: 'query',
       meta: 'tokens',
       format: 'json'
     }, function(res){
       console.log(res['query']['tokens']['csrftoken']);
+      console.log(MD5(res['query']['tokens']['csrftoken']));
       $.post(corsAnywhere+myApiEndPoint, {
         action: 'thank',
         format: 'json',
