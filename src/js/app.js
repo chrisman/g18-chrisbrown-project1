@@ -7,7 +7,7 @@ function makeCard(o) {
     .split('')
     .filter(excludeMarkup)
     .join('')
-    // console.log(idBase); // should be the ID for the block
+
   return '<div id="row-'+ idBase +'" class="row"><div class="col-md-12"><h3><a href="' + o["link"] + '">' + o["title"] + '</a><small> by ' + o["author"] + '</small></h2></div></div><div class="row"><div class="col-md-12">' + desc + '</div></div><div class="row"><div class="col-md-12"><button id="btn-'+ idBase +'" class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span>&nbsp;Thank</span></button></div></div>'
 }
 
@@ -22,10 +22,9 @@ function addToPage(o) {
   $('#main').append(makeCard(o))
 }
 function excludeMarkup(i) {
-  return (!(i === '}'))
+  return (!(i.match(/[{}[\]'|]/)))
 }
 function handleGetMyApiCall(data) {
-  console.log(typeof data["items"][0]["description"]);
   data["items"]
     .filter(excludeUserPages)
     .filter(excludeAnonymousUsers)
