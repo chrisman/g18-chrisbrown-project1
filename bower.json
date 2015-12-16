@@ -5,7 +5,10 @@
     "Christopher Brown <christopher.p.brown@gmail.com>"
   ],
   "description": "",
-  "main": "jquery",
+  "main": [
+    "jquery",
+    "bootstrap-sass"
+  ],
   "moduleType": [
     "node"
   ],
