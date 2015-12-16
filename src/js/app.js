@@ -1,6 +1,6 @@
 var xmlgetter = require('./xmlgetter')
 
-// append to page
+// Filters and forEach.
 function makeCard(o) {
   var idBase = xmlgetter.queryParser(o["link"])["oldid"]
   var desc = o["description"]
@@ -8,26 +8,36 @@ function makeCard(o) {
     .filter(excludeMarkup)
     .join('')
 
-  return '<div id="row-'+ idBase +'" class="row"><div class="col-md-12"><h3><a href="' + o["link"] + '">' + o["title"] + '</a><small> by ' + o["author"] + '</small></h2></div></div><div class="row"><div class="col-md-12">' + desc + '</div></div><div class="row"><div class="col-md-12"><button id="btn-'+ idBase +'" class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span>&nbsp;Thank</span></button></div></div>'
+  return '\
+  <div id="card-'+ idBase +'" class="col-md-4">\
+    <div class="row">\
+      <h3><a href="' + o["link"] + '">' + o["title"] + '</a><small> by ' + o["author"] + '</small></h3>\
+    </div>\
+    <div class="row row-desc">\
+      <div class="col-md-4">' + desc + '</div>\
+    </div>\
+    <div class="row">\
+      <button id="btn-'+ idBase +'" class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span>&nbsp;Thank</span></button>\
+    </div>\
+  </div>'
 }
-
-// Filters and forEach.
 function excludeUserPages(o) {
   return (!(o["title"].includes('User')))
 }
 function excludeAnonymousUsers(o) {
   return (!(o["author"].match(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/)))
 }
-function addToPage(o) {
-  $('#main').append(makeCard(o))
-}
 function excludeMarkup(i) {
   return (!(i.match(/[{}[\]'|]/)))
+}
+function addToPage(currentValue, index, array) {
+  $('#main').append(currentValue)
 }
 function handleGetMyApiCall(data) {
   data["items"]
     .filter(excludeUserPages)
     .filter(excludeAnonymousUsers)
+    .map(makeCard)
     .forEach(addToPage)
 }
 

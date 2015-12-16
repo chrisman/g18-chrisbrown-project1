@@ -1,2 +1,7 @@
 @import 'bootstrap-custom';
 @import './wikidiff';
+
+.row-desc {
+  max-height: 400px;
+  overflow: hidden;
+}
