@@ -21,6 +21,7 @@
 }
 
 .card__header {
+  border-bottom: solid 1px #eef;
   h3 {
     margin: 0;
   }
@@ -32,11 +33,20 @@
     color: #556;
     font-size: small;
   }
+  div > first {
+    height: 100%;
+    margin-bottom: 60px;
+    overflow: scroll;
+  }
 }
 
 .card__footer {
+  border-top: solid 1px #eef;
   position: absolute;
   font-size: 12px;
   width: 100%;
   bottom: 0;
+  button {
+    width: 100px;
+  }
 }
