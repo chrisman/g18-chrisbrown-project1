@@ -1,0 +1,51 @@
+/**
+ * The small "brief summaries" on the main pages are "cards".
+ * Like postcards.
+ */
+
+.card-row {
+  height: 400px;
+}
+
+.card {
+  padding: 1em;
+  height: 400px;
+  overflow: hidden;
+  border: 1px solid #e1e8ed;
+  position: relative;
+  &:hover {
+    background-color: #f5f8fa;
+  }
+}
+
+.card--dim {
+  opacity: 0;
+}
+
+.card__header {
+  border-bottom: solid 1px #eef;
+}
+
+.card__summary {
+  height: 300px;
+  p {
+    color: #556;
+    font-size: small;
+  }
+  div > first {
+    height: 100%;
+    margin-bottom: 60px;
+    overflow: scroll;
+  }
+}
+
+.card__footer {
+  border-top: solid 1px #eef;
+  position: absolute;
+  font-size: 12px;
+  width: 100%;
+  bottom: 0;
+  button {
+    width: 100px;
+  }
+}

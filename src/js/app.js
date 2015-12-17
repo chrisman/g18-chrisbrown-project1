@@ -18,6 +18,24 @@ function makeCard(o) {
   var $briefSummary = $('<table>').append($fullDescription.find('ins, del').closest('tr'))
 
   return '\
+  <div id="poster-'+ idBase +'"\
+  <div class="modal fade poster" tabindex="-1" role="dialog">\
+    <div class="modal-dialog">\
+      <div class="modal-content">\
+        <div class="modal-header">\
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\
+          <h4 class="modal-title"><a href="' + o["link"] + '">' + o["title"] + '</a><small> by <a href="https://en.wikipedia.org/wiki/User:' + o["author"] + '">'+ o["author"] +'</a></small></h4>\
+        </div>\
+        <div class="modal-body">\
+          '+ desc +'\
+        </div>\
+        <div class="modal-footer">\
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>\
+        <button id="poster-thank-'+ idBase +'" class="btn btn-default btn-thanks" data-toggle="tooltip" data-placement="top" title="Thank '+ o["author"] +' for this contribution"><i class="fa fa-heart-o"></i><span>&nbsp;Thank</span></button>\
+        </div>\
+      </div><!-- /.modal-content -->\
+    </div><!-- /.modal-dialog -->\
+  </div><!-- /.modal -->\
   <div id="card-'+ idBase +'" class="container-fluid col-md-4 card card--dim">\
     <div class="row card__header">\
       <div class="col-md-12">\
@@ -31,8 +49,8 @@ function makeCard(o) {
     </div>\
     <div class="row card__footer">\
       <div class="col-md-12 text-right">\
-      <a id="modal--show'+ idBase +'" class="btn btn-default">Show summary</a>\
-      <button id="btn-'+ idBase +'" class="btn btn-default"> <i class="fa fa-heart-o"></i><span>&nbsp;Thank</span></button>\
+      <a id="modal--show'+ idBase +'" class="btn btn-default" data-toggle="modal" data-target="#poster-'+ idBase +'">Show summary</a>\
+      <button id="card-thank-'+ idBase +'" class="btn btn-default btn-thanks" data-toggle="tooltip" data-placement="top" title="Thank '+ o["author"] +' for this contribution"> <i class="fa fa-heart-o"></i><span>&nbsp;Thank</span></button>\
       </div>\
     </div>\
   </div>'
@@ -68,6 +86,10 @@ function handleGetMyApiCall(data) {
     var idBase = xmlgetter.queryParser(o["link"])["oldid"]
     $('#card-'+idBase).delay(timer+=50).animate({'opacity': 1.0}, 500)
   })
+
+  $('[data-toggle="tooltip"]').tooltip({
+    delay: { "show": 500, "hide": 100 }
+  })
 }
 
 
@@ -76,10 +98,9 @@ $(document).ready(function() {
 
   $.get(_str["rss2json"]+encodedUrlForApiCall, handleGetMyApiCall)
 
-  $(document).on('click', 'button', function(e) {
+  $(document).on('click', '.btn-thanks', function(e) {
     var that = $(this)
     that.html('<i class="fa fa-spinner fa-spin"></i>')
-    console.log('click logged');
 
     $.get(_str["corsAnywhere"]+_str["getTokens"], function(res){
       _str["postOptions"]["token"] = res["query"]["tokens"]["csrftoken"]
@@ -90,9 +111,6 @@ $(document).ready(function() {
         } else {
           that.toggleClass("btn-default").toggleClass("btn-success").html('<i class="fa fa-heart fa-lg"></i>')
         }
-        console.log(x);
-      }).fail(function(){
-        console.log("fail");
       })
     })
   })
