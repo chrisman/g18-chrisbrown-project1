@@ -10,7 +10,7 @@ function makeCard(o) {
     .join('')
 
   return '\
-  <div id="card-'+ idBase +'" class="col-md-4">\
+  <div id="card-'+ idBase +'" class="col-md-4 card">\
     <div class="row">\
       <h3><a href="' + o["link"] + '">' + o["title"] + '</a><small> by ' + o["author"] + '</small></h3>\
     </div>\
@@ -33,11 +33,17 @@ function addToPage(currentValue, index, array) {
   $('#main').append(currentValue)
 }
 function handleGetMyApiCall(data) {
-  data["items"]
+  var cards = data["items"]
     .filter(excludeUserPages)
     .filter(excludeAnonymousUsers)
     .map(makeCard)
-    .forEach(addToPage)
+
+  var rowOfCards = ab.chunk(cards, 3)
+  rowOfCards = rowOfCards.map(function(a){
+    return a.join('')
+  }).map(function(s){
+    return '<div class="row">'+s+'</div>'
+  }).forEach(addToPage)
 }
 
 

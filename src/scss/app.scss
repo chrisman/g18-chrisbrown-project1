@@ -1,7 +1,15 @@
 @import 'bootstrap-custom';
 @import './wikidiff';
 
-.row-desc {
+.card {
   max-height: 400px;
   overflow: hidden;
+  border: 1px solid #e1e8ed;
+  &:hover {
+    background-color: #f5f8fa;
+  }
+}
+
+.row-desc {
+  max-height: 400px - 50px;
 }
