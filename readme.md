@@ -8,13 +8,21 @@ __MVP__
 
  1. [x] GET [recent edits](https://en.wikipedia.org/w/api.php?action=help&modules=feedrecentchanges)
 
-2. [ ] The user browses summaries of recent edits
+2. [x] The user browses summaries of recent edits
 
-3. [ ] The user can at their discretion reward editors for their edits by POSTing to the [thank](https://en.wikipedia.org/w/api.php?action=help&modules=thank) action.
+3. [x] The user can at their discretion reward editors for their edits by POSTing to the [thank](https://en.wikipedia.org/w/api.php?action=help&modules=thank) action.
 
 __Stretch__
 
 * Thanks are a finite resource? e.g., You can only send 5 per day?
+
+## todo
+
+1. why does css break on page wrap?
+
+2. about page
+
+3. nav
 
 ## What I Have Learned
 
