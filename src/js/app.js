@@ -1,5 +1,6 @@
 var xmlgetter = require('./xmlgetter')
 var ab = require('./arraybuddy')
+var _str = require('./strings')
 
 // Filters and forEach.
 function makeCard(o) {
@@ -49,34 +50,15 @@ function handleGetMyApiCall(data) {
 
 $(document).ready(function() {
 
-  var myApiEndPoint = "https://en.wikipedia.org/w/api.php"
-  var getRecentChanges = "https://en.wikipedia.org/w/api.php?action=feedrecentchanges&hideminor=true&hidebots=true"
-  var getRecentChangesOptions = {
-    action: 'feedrecentchanges',
-    hideminor: 'true',
-    hidebots: 'true'
-  }
-  var myGetTokensString = "https://en.wikipedia.org/w/api.php?action=query&meta=tokens&type=csrf&format=json"
-  var testCentralAuthString = "https://en.wikipedia.org/w/api.php?action=centralauthtoken&format=json"
-  var encodedUrlForApiCall = xmlgetter.getEncodedUrl(getRecentChanges);
-  var corsAnywhere = "https://cors-anywhere.herokuapp.com/"
-  var rss2json = "http://rss2json.com/api.json?&rss_url="
-  var myPostString = "https://en.wikipedia.org/w/api.php?action=thank&format=json&rev=624145252&source=history"
-  var myPostStringOptions = {
-    action: 'thank',
-    format: 'json',
-    rev: '624145252',
-    source: 'diff',
-    token: ''
-  }
+  var encodedUrlForApiCall = xmlgetter.getEncodedUrl(_str["getFeedRecentChanges"]);
 
-  $.get(rss2json + encodedUrlForApiCall, handleGetMyApiCall)
+  $.get(_str["rss2json"]+encodedUrlForApiCall, handleGetMyApiCall)
 
   $(document).on('click', 'button', function(e) {
     console.log('click logged');
-    $.get(corsAnywhere+myGetTokensString, function(res){
-      myPostStringOptions["token"] = res["query"]["tokens"]["csrftoken"]
-      $.post(corsAnywhere+myApiEndPoint, myPostStringOptions, function(res){
+    $.get(_str["corsAnywhere"]+_str["getTokens"], function(res){
+      _str["postOptions"]["token"] = res["query"]["tokens"]["csrftoken"]
+      $.post(_str["corsAnywhere"]+_str["apiEndPoint"], _str["postOptions"], function(res){
         console.log(res);
       })
     })
