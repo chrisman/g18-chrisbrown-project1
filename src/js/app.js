@@ -10,12 +10,12 @@ function makeCard(o) {
     .join('')
 
   return '\
-  <div id="card-'+ idBase +'" class="col-md-4 card">\
-    <div class="row">\
+  <div id="card-'+ idBase +'" class="container-fluid col-md-4 card">\
+    <div class="card__header">\
       <h3><a href="' + o["link"] + '">' + o["title"] + '</a><small> by ' + o["author"] + '</small></h3>\
     </div>\
-    <div class="row row-desc">' + desc + '</div>\
-    <div class="row">\
+    <div class="card__summary">' + desc + '</div>\
+    <div class="card__footer">\
       <button id="btn-'+ idBase +'" class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span>&nbsp;Thank</span></button>\
     </div>\
   </div>'
@@ -42,7 +42,7 @@ function handleGetMyApiCall(data) {
   rowOfCards = rowOfCards.map(function(a){
     return a.join('')
   }).map(function(s){
-    return '<div class="row">'+s+'</div>'
+    return '<div class="row card-row">'+s+'</div>'
   }).forEach(addToPage)
 }
 

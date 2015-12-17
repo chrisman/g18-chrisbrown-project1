@@ -1,15 +1,36 @@
 @import 'bootstrap-custom';
 @import './wikidiff';
 
+.card-row {
+  height: 400px;
+}
+
 .card {
-  max-height: 400px;
+  padding: 1em;
+  height: 400px;
   overflow: hidden;
   border: 1px solid #e1e8ed;
+  position: relative;
   &:hover {
     background-color: #f5f8fa;
   }
 }
 
-.row-desc {
-  max-height: 400px - 50px;
+.card__header {
+  h3 {
+    margin: 0;
+  }
+}
+
+.card__summary {
+  overflow: hidden;
+  p {
+    color: #556;
+  }
+}
+
+.card__footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
