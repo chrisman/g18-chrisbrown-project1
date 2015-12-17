@@ -12,15 +12,6 @@ function getQueryObjectFromString(queryString){
 }
 
 module.exports = {
-  fetchJson: function(url){
-    return (function(url){
-
-      $.get(url, function(d){
-        console.log(d);
-      })
-
-    })()
-  },
   getEncodedUrl: function(u){
     return encodeURIComponent(u)
   },

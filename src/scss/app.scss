@@ -16,6 +16,10 @@
   }
 }
 
+.card--dim {
+  opacity: 0;
+}
+
 .card__header {
   h3 {
     margin: 0;
@@ -23,14 +27,16 @@
 }
 
 .card__summary {
-  overflow: hidden;
+  height: 300px;
   p {
     color: #556;
+    font-size: small;
   }
 }
 
 .card__footer {
   position: absolute;
+  font-size: 12px;
   width: 100%;
   bottom: 0;
 }

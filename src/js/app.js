@@ -2,6 +2,10 @@ var xmlgetter = require('./xmlgetter')
 var ab = require('./arraybuddy')
 var _str = require('./strings')
 
+
+function briefSummary(str){
+
+}
 // Filters and forEach.
 function makeCard(o) {
   var idBase = xmlgetter.queryParser(o["link"])["oldid"]
@@ -10,14 +14,26 @@ function makeCard(o) {
     .filter(excludeMarkup)
     .join('')
 
+  var $test = $(desc)
+  console.log($test);
+
   return '\
-  <div id="card-'+ idBase +'" class="container-fluid col-md-4 card">\
-    <div class="card__header">\
+  <div id="card-'+ idBase +'" class="container-fluid col-md-4 card card--dim">\
+    <div class="row card__header">\
+      <div class="col-md-12">\
       <h3><a href="' + o["link"] + '">' + o["title"] + '</a><small> by ' + o["author"] + '</small></h3>\
+      </div>\
     </div>\
-    <div class="card__summary">' + desc + '</div>\
-    <div class="card__footer">\
+    <div class="row card__summary">\
+      <div class="col-md-12">\
+      ' + desc + '\
+      </div>\
+    </div>\
+    <div class="row card__footer">\
+      <div class="col-md-12 text-right">\
+      <span>Show summary</span>\
       <button id="btn-'+ idBase +'" class="btn btn-default"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><span>&nbsp;Thank</span></button>\
+      </div>\
     </div>\
   </div>'
 }
@@ -34,10 +50,11 @@ function addToPage(currentValue, index, array) {
   $('#main').append(currentValue)
 }
 function handleGetMyApiCall(data) {
-  var cards = data["items"]
+  var dataset = data["items"]
     .filter(excludeUserPages)
     .filter(excludeAnonymousUsers)
-    .map(makeCard)
+
+  var cards = dataset.map(makeCard)
 
   var rowOfCards = ab.chunk(cards, 3)
   rowOfCards = rowOfCards.map(function(a){
@@ -45,6 +62,12 @@ function handleGetMyApiCall(data) {
   }).map(function(s){
     return '<div class="row card-row">'+s+'</div>'
   }).forEach(addToPage)
+
+  var timer = 0
+  dataset.forEach(function(o){
+    var idBase = xmlgetter.queryParser(o["link"])["oldid"]
+    $('#card-'+idBase).delay(timer+=50).animate({'opacity': 1.0}, 500)
+  })
 }
 
 
