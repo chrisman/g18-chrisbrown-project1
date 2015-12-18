@@ -28,6 +28,8 @@
 
 .card__summary {
   height: 300px;
+  cursor: pointer;
+  overflow: none;
   p {
     color: #556;
     font-size: small;

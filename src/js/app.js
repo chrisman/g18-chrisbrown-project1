@@ -36,7 +36,7 @@ function makeCard(o) {
       </div><!-- /.modal-content -->\
     </div><!-- /.modal-dialog -->\
   </div><!-- /.modal -->\
-  <div id="card-'+ idBase +'" class="container-fluid col-md-4 card card--dim">\
+  <div id="card-'+ idBase +'" class="container-fluid col-md-4 card card--dim" data-toggle="modal" data-target="#poster-'+ idBase +'">\
     <div class="row card__header">\
       <div class="col-md-12">\
       <h3><a href="' + o["link"] + '">' + o["title"] + '</a><small> by <a href="https://en.wikipedia.org/wiki/User:' + o["author"] + '">'+ o["author"] +'</a></small></h3>\
@@ -49,7 +49,6 @@ function makeCard(o) {
     </div>\
     <div class="row card__footer">\
       <div class="col-md-12 text-right">\
-      <a id="modal--show'+ idBase +'" class="btn btn-default" data-toggle="modal" data-target="#poster-'+ idBase +'">Show summary</a>\
       <button id="card-thank-'+ idBase +'" class="btn btn-default btn-thanks" data-toggle="tooltip" data-placement="top" title="Thank '+ o["author"] +' for this contribution"> <i class="fa fa-heart-o"></i><span>&nbsp;Thank</span></button>\
       </div>\
     </div>\
@@ -95,7 +94,6 @@ function handleGetMyApiCall(data) {
 
 $(document).ready(function() {
   var encodedUrlForApiCall = xmlgetter.getEncodedUrl(_str["getFeedRecentChanges"]);
-
   $.get(_str["rss2json"]+encodedUrlForApiCall, handleGetMyApiCall)
 
   $(document).on('click', '.btn-thanks', function(e) {
