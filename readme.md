@@ -6,7 +6,7 @@ Here's the plan.
 
 __MVP__
 
- 1. [x] GET [recent edits](https://en.wikipedia.org/w/api.php?action=help&modules=feedrecentchanges)
+1. [x] GET [recent edits](https://en.wikipedia.org/w/api.php?action=help&modules=feedrecentchanges)
 
 2. [x] The user browses summaries of recent edits
 
