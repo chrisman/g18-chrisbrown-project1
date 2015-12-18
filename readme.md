@@ -1,6 +1,6 @@
 # Wiki Thanks
 
-see it at [http://chrisman.github.io/g18-chrisbrown-project1/]()
+see it at [http://chrisman.github.io/g18-chrisbrown-project1/](http://chrisman.github.io/g18-chrisbrown-project1/)
 
 from about.html:
 
