@@ -2,11 +2,8 @@ var xmlgetter = require('./xmlgetter')
 var ab = require('./arraybuddy')
 var _str = require('./strings')
 
-
-function briefSummary(str){
-
-}
 // Filters and forEach.
+// TODO this function is way too long, and named incorrectly
 function makeCard(o) {
   var idBase = xmlgetter.queryParser(o["link"])["oldid"]
   var desc = o["description"]
@@ -93,20 +90,23 @@ function handleGetMyApiCall(data) {
 
 
 $(document).ready(function() {
+
+  // initial get request to load content
   var encodedUrlForApiCall = xmlgetter.getEncodedUrl(_str["getFeedRecentChanges"]);
   $.get(_str["rss2json"]+encodedUrlForApiCall, handleGetMyApiCall)
 
+  // on thank ...
   $(document).on('click', '.btn-thanks', function(e) {
     var that = $(this)
     that.html('<i class="fa fa-spinner fa-spin"></i>')
 
+    // ... sent a thanks
     $.get(_str["corsAnywhere"]+_str["getTokens"], function(res){
       _str["postOptions"]["token"] = res["query"]["tokens"]["csrftoken"]
-
       $.post(_str["corsAnywhere"]+_str["apiEndPoint"], _str["postOptions"]).done(function(x){
-        if ('error' in x) {
+        if ('error' in x) { // error response
           that.toggleClass("btn-default").toggleClass("btn-danger").html("uh-oh..")
-        } else {
+        } else { // success response
           that.toggleClass("btn-default").toggleClass("btn-success").html('<i class="fa fa-heart fa-lg"></i>')
         }
       })

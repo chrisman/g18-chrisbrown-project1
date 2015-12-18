@@ -1,6 +1,14 @@
 # Wiki Thanks
 
-see it at [http://chrisman.github.io/g18-chrisbrown-project1/](http://chrisman.github.io/g18-chrisbrown-project1/)
+Two things there should be more of in the world:
+
+1. Free, accurate information.
+
+2. Nice people.
+
+See it here:
+
+[http://chrisman.github.io/g18-chrisbrown-project1/](http://chrisman.github.io/g18-chrisbrown-project1/)
 
 from about.html:
 

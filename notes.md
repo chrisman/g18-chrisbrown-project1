@@ -20,10 +20,6 @@ __Stretch__
 
 1. why does css break on page wrap?
 
-2. about page
-
-3. nav
-
 ## What I Have Learned
 
 * __Bower__ bower downloads front end assets and resolves dependencies. It doesn't do anything with them though. Including them in your project is up to you. I don't know if I'll use it in the future.

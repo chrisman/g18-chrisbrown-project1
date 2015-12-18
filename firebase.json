@@ -1,9 +1,0 @@
-{
-  "firebase": "g18-chrisbrown",
-  "public": "public",
-  "ignore": [
-    "firebase.json",
-    "**/.*",
-    "**/node_modules/**"
-  ]
-}
