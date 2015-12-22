@@ -91,3 +91,37 @@ __Stretch__
 * April is my project owner
 
 * I am tommys pwner
+
+## Post Mortem
+
+__Smiles__
+
+- Chris: found use of feature branching to try new zany stuff
+- Chris: Liked his organization.  Was able to pull them out into their own files. Scott also had a lot of different files
+- Chris: used gulp (task runner) to build stuff
+- Chris: used BEM (Block Element Modifier) to name his system.  Helps with more organization.
+- Chris: enjoyed using TDD to see how his functions would react to the API information.  
+- Stuart: Excited to see how Express and Node can make games more efficient.  
+- Stuart: Effectively moved back and forward between UI + key functionality.  
+- Chris/Stuart: Started with a warm up.  
+- Chris: Used stories to drive experience.
+
+__Sads__
+
+- Chris: BEM can be a little bit repetitive
+- Stuart: Organization on the project was a struggle.
+- Stuart: Wanted to take more of a focus on stories and not defining the next story until I got to the goal of the next one.  
+- Stuart: Not a huge fan of Pivotal Tracker.  Felt like it was not that successful for a smaller project.
+- Chris/Scott/Stuart: Not hugely connected to our projects.  Turned into a bit of a grind.
+- Chris: Starting with wireframes did not work well.
+- Chris: felt like he relied Git Stash a little too much
+- Scott: Wouldn't use a local Python server again, caused a lot of  issues, especially with pushing.  Made it hard to tell if/when the code was broken.  
+
+__Mehs__
+
+- Scott: Github pages takes a little while to refresh
+- Stuart/Chris: Didn't take enough breaks.  
+- Stuart: Doing research/setting goals was not great.  Wish there was a better PM relationship.  
+- Chris: PM relationship wasn't defined very clearly.  PMs weren't empowered with structure or responsibility.  
+- Stuart: Would have defined game stats (UI states) better with regards to User Stories and code development.
+- Chris: Going to have a scaffold that's ready to go for the project to reduce the setup time
